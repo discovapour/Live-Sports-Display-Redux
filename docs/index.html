@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MitchellBrownNE/Live-Sports-Display/main/Website/LiveStats/static/images/MMM_Mini_Logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MitchellBrownNE/Live-Sports-Display@main/Website/LiveStats/static/style_sheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Motion Matrix Media — Live Scores</title>
+    <style>
+        /* Pages-edition additions, kept in the original site's voice */
+        .lsd-team-line { font-size: 34px; }
+        .lsd-head { font-size: 18px; font-weight: normal; opacity: 0.85; }
+        .lsd-score { font-size: 40px; font-weight: bold; }
+        .lsd-leaders { margin: 4px 5% 14px; }
+        .lsd-leader-line { grid-template-columns: 3fr 1fr 1fr; font-size: 18px; margin: 4px 0; }
+        .lsd-live .lsd-head span:first-child { color: #d40000; font-weight: bold; }
+        body.neon .lsd-live { border-color: var(--neon-b); box-shadow: 0 0 26px color-mix(in srgb, var(--neon-b) 30%, transparent); }
+        .lsd-switch { display: flex; gap: 12px; justify-content: center; margin: 20px 0; }
+        .lsd-switch button { width: 140px; }
+        .lsd-switch .lsd-active { outline: 3px solid #666; }
+        body.neon .lsd-switch .lsd-active { outline: 1px solid var(--neon-a); box-shadow: 0 0 16px var(--neon-a); }
+        #updated { text-align: center; color: #999; font-size: 14px; }
+        #scores .section { padding-left: 40px; padding-right: 40px; max-width: 900px; margin: 20px auto; }
+        main { height: auto; }   /* original sheet fixes main at 50px; contents overflow */
+        footer { margin-top: 40px; padding-bottom: 20px; }
+        .header, .nav { flex-wrap: wrap; }  /* keep NEON toggle on-screen on mobile */
+    </style>
+</head>
+<body class="body">
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/MitchellBrownNE/Live-Sports-Display/main/Website/LiveStats/static/images/MMM_Logo.png" alt="Motion Matrix Media Logo">
+        <ul class="nav">
+            <li><a href="https://github.com/MitchellBrownNE/Live-Sports-Display" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+    </div>
+    <main>
+        <h1 class="title">Live Sports Display</h1>
+        <div class="lsd-switch">
+            <button type="button" class="stats-button" data-league="nba">NBA</button>
+            <button type="button" class="stats-button lsd-active" data-league="wnba">WNBA</button>
+        </div>
+        <div id="scores"></div>
+        <p id="updated"></p>
+    </main>
+    <footer><p>Motion Matrix Media — now serverless. The Heroku dyno rests in peace.</p></footer>
+    <script src="static/app.js" defer></script>
+    <script src="static/neon.js" defer></script>
+</body>
+</html>

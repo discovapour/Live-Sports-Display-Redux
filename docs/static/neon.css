@@ -1,0 +1,237 @@
+/* ============================================================
+   NEON MODE — bar sign edition
+   Piped neon tube lettering on a wood-plank sports bar wall.
+   Scoped under body.neon; injected by neon.js.
+   Accents --neon-a / --neon-b come from live team colors.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Tilt+Neon&display=swap');
+
+body.neon {
+    --neon-a: #22e5ff;
+    --neon-b: #ff2ea6;
+    --wood-1: #4a2f1b;
+    --wood-2: #5c3a22;
+    --wood-3: #3a2414;
+    --neon-text: #fff6e8;
+
+    background-color: var(--wood-3);
+    /* planks + seams + warm light pooling */
+    background-image:
+        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255, 190, 90, 0.14), transparent 60%),
+        repeating-linear-gradient(180deg,
+            var(--wood-2) 0px, var(--wood-1) 46px,
+            #2b1a0e 47px, #2b1a0e 49px,
+            var(--wood-1) 50px, var(--wood-2) 96px,
+            #241509 97px, #241509 99px),
+        linear-gradient(180deg, #3a2414, #241509);
+    background-attachment: fixed;
+    color: var(--neon-text);
+}
+
+/* wood grain + vignette overlay */
+body.neon::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    background-image:
+        radial-gradient(ellipse 140% 110% at 50% 30%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.15' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.4 0.25 0.1 0 0'/></filter><rect width='300' height='300' filter='url(%23g)' opacity='0.5'/></svg>");
+}
+
+/* buzzing sign power-on when the mode flips */
+body.neon::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: rgba(255, 240, 200, 0.5);
+    animation: neon-powerup 0.9s steps(6, end) 1 forwards;
+}
+@keyframes neon-powerup {
+    0% { opacity: 0.6; } 20% { opacity: 0; } 35% { opacity: 0.35; }
+    50% { opacity: 0; } 65% { opacity: 0.15; } 100% { opacity: 0; }
+}
+
+/* --- Header: dark bar rail --- */
+body.neon .header {
+    background: linear-gradient(180deg, rgba(12, 6, 2, 0.92), rgba(12, 6, 2, 0.75));
+    border-bottom: 3px solid #1a0e05;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+}
+body.neon .header img { filter: drop-shadow(0 0 8px var(--neon-a)); }
+
+/* Neon tube text: hot white core + layered colored halo */
+body.neon h1,
+body.neon .title,
+body.neon h2 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    text-shadow:
+        0 0 2px #fff,
+        0 0 7px var(--neon-a),
+        0 0 16px var(--neon-a),
+        0 0 34px var(--neon-a),
+        0 0 60px color-mix(in srgb, var(--neon-a) 65%, transparent);
+    animation: neon-hum 4s ease-in-out infinite;
+}
+@keyframes neon-hum {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.93; }
+    52% { opacity: 0.85; }
+    54% { opacity: 0.97; }
+}
+
+body.neon .nav a,
+body.neon .neon-toggle {
+    font-family: 'Tilt Neon', sans-serif;
+    background: transparent;
+    border: 2px solid color-mix(in srgb, var(--neon-b) 70%, #000);
+    border-radius: 10px;
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 8px var(--neon-b), 0 0 18px var(--neon-b);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--neon-b) 40%, transparent),
+                inset 0 0 10px color-mix(in srgb, var(--neon-b) 20%, transparent);
+    cursor: pointer;
+}
+body.neon .nav a:hover,
+body.neon .nav a:focus-visible,
+body.neon .neon-toggle:hover {
+    box-shadow: 0 0 22px var(--neon-b),
+                inset 0 0 16px color-mix(in srgb, var(--neon-b) 35%, transparent);
+    outline: none;
+}
+
+/* --- Game panels: dark menu boards screwed to the wall --- */
+body.neon .section,
+body.neon .thinSec {
+    background: linear-gradient(180deg, rgba(10, 6, 3, 0.88), rgba(6, 3, 1, 0.92));
+    border: 3px solid #17100a;
+    border-radius: 10px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.65),
+        inset 0 0 60px rgba(0, 0, 0, 0.5),
+        0 0 30px color-mix(in srgb, var(--neon-a) 14%, transparent);
+    color: var(--neon-text);
+    position: relative;
+}
+/* mounting screws */
+body.neon .section::before,
+body.neon .section::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #cfc4b0, #5a5044 70%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+body.neon .section::before { left: 12px; }
+body.neon .section::after { right: 12px; }
+
+body.neon main {
+    background: none;
+}
+body.neon a { color: var(--neon-a); }
+body.neon footer p { color: #c9a97e; text-shadow: 0 0 6px rgba(255,180,80,0.35); }
+
+/* --- Score lines: tube script team names, neon digits --- */
+body.neon .team-stats-line,
+body.neon .players-stats-line,
+body.neon .no-game {
+    font-family: 'Tilt Neon', sans-serif;
+    letter-spacing: 0.02em;
+}
+body.neon .lsd-head {
+    color: #ffca7a;
+    text-shadow: 0 0 8px rgba(255, 170, 60, 0.8);
+    border-bottom: 1px dashed rgba(255, 190, 90, 0.35);
+    padding-bottom: 8px;
+}
+body.neon .lsd-team-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 0.95em;
+    color: #fff !important;
+    text-shadow:
+        0 0 2px #fff,
+        0 0 8px var(--neon-b),
+        0 0 18px var(--neon-b),
+        0 0 36px var(--neon-b);
+}
+body.neon .lsd-score {
+    font-family: 'Tilt Neon', sans-serif;
+}
+body.neon .players-stats-line {
+    color: var(--neon-text);
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px rgba(255, 230, 180, 0.4);
+}
+body.neon .players-stats-line:nth-child(even) {
+    background: rgba(255, 200, 110, 0.05);
+}
+body.neon .player-name {
+    color: #ffd9a0;
+    text-shadow: 0 0 6px rgba(255, 180, 80, 0.7);
+}
+body.neon .players-stats-line {
+    animation: neon-flicker 0.5s steps(4, end) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes neon-flicker {
+    0% { opacity: 0; } 40% { opacity: 0.9; } 55% { opacity: 0.25; } 100% { opacity: 1; }
+}
+body.neon .lsd-live { border-color: color-mix(in srgb, var(--neon-b) 60%, #17100a); }
+
+/* --- Forms / buttons --- */
+body.neon input[type="text"] {
+    background: rgba(8, 4, 2, 0.9);
+    border: 2px solid #2b1c0f;
+    color: var(--neon-text);
+    caret-color: var(--neon-b);
+}
+body.neon input[type="text"]::placeholder { color: #8a6f52; }
+body.neon button[type="submit"],
+body.neon input[type="submit"],
+body.neon .stats-button {
+    font-family: 'Tilt Neon', sans-serif;
+    background: transparent;
+    border: 2px solid color-mix(in srgb, var(--neon-b) 70%, #000);
+    border-radius: 10px;
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 8px var(--neon-b);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--neon-b) 35%, transparent);
+    transition: box-shadow 0.2s;
+}
+body.neon button[type="submit"]:hover,
+body.neon input[type="submit"]:hover,
+body.neon .stats-button:hover {
+    box-shadow: 0 0 24px var(--neon-b);
+}
+
+/* toggle when mode is off: plain, matches original nav */
+.neon-toggle {
+    font: inherit;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    background: transparent;
+    border: 5px solid black;
+    color: white;
+    font-size: 20px;
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.neon::after,
+    body.neon h1, body.neon .title, body.neon h2,
+    body.neon .players-stats-line {
+        animation: none !important;
+    }
+}
