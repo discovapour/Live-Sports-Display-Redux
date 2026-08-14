@@ -5,7 +5,7 @@
 
 ## Our Website
 Our website can be accessed here:
-https://livesportsdisplay-78ab65502a20.herokuapp.com/
+https://discovapour.github.io/Live-Sports-Display-Redux/
 
 ## Our Purpose:
 This project aims to display live Scores on an LED Matrix Panel.
